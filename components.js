@@ -24,7 +24,7 @@ class houseFront{
     this.container=SVG().addTo("#"+dom).size(200,200)
     this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "none"})
 
-    this.highlight_path=this.container.line(0,0,0,0).attr({"stroke": "var(--accent-color)", "stroke-width": 10})
+    this.highlight_path = this.container.line(0, 0, 0, 0).attr({ "stroke": "var(--accent-color)", "stroke-width": 3})
   }
   
   delete(){
@@ -51,10 +51,10 @@ class houseFront{
   drawHighlight(){
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin,margin,this.x,margin)
+        this.highlight_path.plot(margin-1.5,margin,this.x+margin+1.5,margin)
         break;
       case 2:
-        this.highlight_path.plot(margin,margin,margin,this.y)
+        this.highlight_path.plot(margin,margin-1.5,margin,this.y+margin+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -66,10 +66,11 @@ class houseFront{
 class houseSide extends houseFront{
   constructor(dom){
     super(dom)
-    // this.rect.attr({"stroke": "#FFF", "stroke-widthS": 3})
+
     this.top_triangle=[]
     this.top_triangle[0]=this.container.line(0,0,0,0).attr({"stroke": "white", "stroke-width": 3})
-    this.top_triangle[1]=this.container.line(0,0,0,0).attr({"stroke": "white", "stroke-width": 3})
+    this.top_triangle[1] = this.container.line(0, 0, 0, 0).attr({ "stroke": "white", "stroke-width": 3 })
+    this.highlight_path = this.container.line(0, 0, 0, 0).attr({ "stroke": "var(--accent-color)", "stroke-width": 3 })
   }
 
   update(time){
@@ -79,8 +80,8 @@ class houseSide extends houseFront{
     this.rect.move(margin,this.y1+margin)
     this.container.animate(time).size(this.z+margin*2,this.y+this.y1+margin*2)
 
-    this.top_triangle[0].animate().plot(margin,margin,margin,this.y1+margin)
-    this.top_triangle[1].animate().plot(margin,margin,this.z+margin,this.y1+margin)
+    this.top_triangle[0].animate(time).plot(margin,margin,margin,this.y1+margin)
+    this.top_triangle[1].animate(time).plot(margin,margin,this.z+margin,this.y1+margin)
 
     this.updateTag(z, y)
     this.drawHighlight()
@@ -89,10 +90,13 @@ class houseSide extends houseFront{
   drawHighlight(){
     switch (highlight) {
       case 2:
-        this.highlight_path.plot(margin,margin,margin,this.y)
+        this.highlight_path.plot(margin,margin+this.y1-1.5,margin,this.y+this.y1+margin+1.5)
         break;
       case 3:
-        this.highlight_path.plot(margin,margin,this.z,margin)
+        this.highlight_path.plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
+        break;
+      case 4:
+        this.highlight_path.plot(margin, margin, margin, margin + this.y+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -121,7 +125,7 @@ class houseFloor extends houseFront{
         this.highlight_path.plot(margin, margin, this.x, margin)
         break;
       case 3:
-        this.highlight_path.plot(margin, margin, margin, this.z)
+        this.highlight_path.plot(margin, margin-1.5, margin, this.z+margin+1.5)
         break;
       default:
         this.highlight_path.plot(0, 0, 0, 0)
