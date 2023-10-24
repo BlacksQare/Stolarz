@@ -79,7 +79,7 @@ function initializeObjects(){
 
   preview_objects[0]=new houseFront("preview-element-0")
   preview_objects[1]=new houseSide("preview-element-1")
-  preview_objects[2]=new houseFront("preview-element-2")
+  preview_objects[2]=new houseFloor("preview-element-2")
   preview_objects[3]=new houseFront("preview-element-3")
 
   // value_objects[0]=new side_plain_obj("value-preview-0")

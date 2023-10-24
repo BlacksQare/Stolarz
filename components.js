@@ -100,3 +100,32 @@ class houseSide extends houseFront{
     }
   }
 }
+
+class houseFloor extends houseFront{
+  constructor(dom) {
+    super(dom)  
+  }
+
+  update(time = 300) {
+    [this.x, this.z] = normalize(80, x, z)
+    this.rect.animate(time).size(this.x, this.z)
+    this.container.animate(time).size(this.x + margin * 2, this.z + margin * 2)
+    this.rect.move(margin, margin)
+    this.updateTag(x, z)
+    this.drawHighlight()
+  }
+
+  drawHighlight() {
+    switch (highlight) {
+      case 1:
+        this.highlight_path.plot(margin, margin, this.x, margin)
+        break;
+      case 3:
+        this.highlight_path.plot(margin, margin, margin, this.z)
+        break;
+      default:
+        this.highlight_path.plot(0, 0, 0, 0)
+        break;
+    }
+  }
+}
