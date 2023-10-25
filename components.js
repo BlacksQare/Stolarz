@@ -22,7 +22,7 @@ class houseFront{
     this.dom=dom
 
     this.container=SVG().addTo("#"+dom).size(200,200)
-    this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "none"})
+    this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "#1a1a1a"})
 
     this.highlight_path = this.container.line(0, 0, 0, 0).attr({ "stroke": "var(--accent-color)", "stroke-width": 3})
   }
@@ -131,5 +131,29 @@ class houseFloor extends houseFront{
         this.highlight_path.plot(0, 0, 0, 0)
         break;
     }
+  }
+}
+
+
+class houseRoof extends houseFront{
+  constructor(dom){
+    super(dom)
+    this.roof_margins={}
+    this.rect.attr({"fill": "var(--icons-off-color)", "stroke": "none"})
+    this.margins_rect=this.container.rect(100,100).attr({"stroke": "white", "stroke-width": 3, "fill": "none"})
+    // this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "#1a1a1a"})
+  }
+
+  update(time = 300) {
+    [this.x, this.z, this.roof_margins.top, this.roof_margins.right, this.roof_margins.bottom, this.roof_margins.left] = normalize(80, x, z, roof_margins.top, roof_margins.right, roof_margins.bottom, roof_margins.left, x+roof_margins.left+roof_margins.right, z+roof_margins.top+roof_margins.bottom)
+    this.rect.animate(time).size(this.x-this.roof_margins.left-this.roof_margins.right, this.z-this.roof_margins.top-this.roof_margins.bottom)
+    this.container.animate(time).size(this.x + margin * 2, this.z + margin * 2)
+    this.rect.animate(time).move(margin+this.roof_margins.left, margin+this.roof_margins.top)
+
+    this.margins_rect.animate(time).size(this.x, this.z)
+    this.margins_rect.move(margin,margin)
+
+    this.updateTag(x, z)
+    this.drawHighlight()
   }
 }
