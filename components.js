@@ -75,7 +75,7 @@ class houseSide extends houseFront{
 
   update(time){
     // console.log(x,y,z)
-    [this.y, this.y1, this.z]=normalize(80, y, y1, z)
+    [this.y, this.y1, this.z]=normalize(80, y, y1, z, y+y1)
     this.rect.animate(time).size(this.z,this.y)
     this.rect.move(margin,this.y1+margin)
     this.container.animate(time).size(this.z+margin*2,this.y+this.y1+margin*2)
