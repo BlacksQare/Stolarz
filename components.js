@@ -96,7 +96,7 @@ class houseSide extends houseFront{
         this.highlight_path.plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
         break;
       case 4:
-        this.highlight_path.plot(margin, margin, margin, margin + this.y+1.5)
+        this.highlight_path.plot(margin, margin, margin, margin+this.y1+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -122,7 +122,7 @@ class houseFloor extends houseFront{
   drawHighlight() {
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin, margin, this.x, margin)
+        this.highlight_path.plot(margin-1.5, margin, this.x+margin+1.5, margin)
         break;
       case 3:
         this.highlight_path.plot(margin, margin-1.5, margin, this.z+margin+1.5)
