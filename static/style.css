@@ -38,6 +38,7 @@ body,html {
 
 
 select{
+  --webkit-appearance: initial;
   padding: 10px 15px 10px 15px;
   border-radius: 20px;
   border: none;
@@ -46,6 +47,14 @@ select{
   outline: none;
   color: white;
   cursor: pointer;
+  font-size: medium;
+  text-indent: 1px;
+  line-height: 20px;
+}
+
+option{
+  color: white;
+  background-color: var(--inputs-background-color);
 }
 
 /* svg{

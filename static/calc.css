@@ -43,14 +43,17 @@
   height: 0;
 }
 
+#preview-content td{
+  width: 50%;
+}
+
 .preview-element{
   width: calc(50% - 10px);
-  height: fit-content;
+  /* height: fit-content; */
   margin: 5px;
   margin-left: 50%;
   transform: translate(-50%);
-  /* background-color: blue; */
-  float: left;
+  height: 180px;
 }
 
 .preview-element p{
@@ -60,7 +63,8 @@
 
 .preview-element svg{
   margin-left: 50%;
-  transform: translate(-50%);
+  margin-top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #preview-arrow{
