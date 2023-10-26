@@ -45,16 +45,16 @@ class houseFront{
     // this.tag.innerHTML=x+"m x <br>"+y+"m"
     this.updateTag(x, y)
     // this.tag=x+"m x "+y+"m"
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight(){
+  drawHighlight(time){
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin-1.5,margin,this.x+margin+1.5,margin)
+        this.highlight_path.animate(time).plot(margin-1.5,margin,this.x+margin+1.5,margin)
         break;
       case 2:
-        this.highlight_path.plot(margin,margin-1.5,margin,this.y+margin+1.5)
+        this.highlight_path.animate(time).plot(margin,margin-1.5,margin,this.y+margin+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -84,19 +84,19 @@ class houseSide extends houseFront{
     this.top_triangle[1].animate(time).plot(margin,margin,this.z+margin,this.y1+margin)
 
     this.updateTag(z, y)
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight(){
+  drawHighlight(time){
     switch (highlight) {
       case 2:
-        this.highlight_path.plot(margin,margin+this.y1-1.5,margin,this.y+this.y1+margin+1.5)
+        this.highlight_path.animate(time).plot(margin,margin+this.y1-1.5,margin,this.y+this.y1+margin+1.5)
         break;
       case 3:
-        this.highlight_path.plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
+        this.highlight_path.animate(time).plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
         break;
       case 4:
-        this.highlight_path.plot(margin, margin, margin, margin+this.y1+1.5)
+        this.highlight_path.animate(time).plot(margin, margin, margin, margin+this.y1+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -116,16 +116,16 @@ class houseFloor extends houseFront{
     this.container.animate(time).size(this.x + margin * 2, this.z + margin * 2)
     this.rect.move(margin, margin)
     this.updateTag(x, z)
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight() {
+  drawHighlight(time) {
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin-1.5, margin, this.x+margin+1.5, margin)
+        this.highlight_path.animate(time).plot(margin-1.5, margin, this.x+margin+1.5, margin)
         break;
       case 3:
-        this.highlight_path.plot(margin, margin-1.5, margin, this.z+margin+1.5)
+        this.highlight_path.animate(time).plot(margin, margin-1.5, margin, this.z+margin+1.5)
         break;
       default:
         this.highlight_path.plot(0, 0, 0, 0)
