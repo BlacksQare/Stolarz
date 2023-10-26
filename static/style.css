@@ -4,6 +4,7 @@
   --blur: blur(40px);
   --animation-time: 0.3s;
   --icons-off-color: rgba(255,255,255,0.3);
+  --margins-color: #3d8c6c;
 }
 
 body,html {

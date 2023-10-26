@@ -1,4 +1,5 @@
 var x=100, y=100, y1=50, z=100
+let roof_margins={}
 var objects_initialized=false
 let preview_objects=[]
 let value_objects=[]
@@ -29,6 +30,11 @@ async function showPage(button=null){
     document.getElementById("value2").onchange=()=>update()
     document.getElementById("value3").onchange=()=>update()
     document.getElementById("value4").onchange=()=>update()
+
+    document.getElementById("value-margin-1").onchange=()=>update()
+    document.getElementById("value-margin-2").onchange=()=>update()
+    document.getElementById("value-margin-3").onchange=()=>update()
+    document.getElementById("value-margin-4").onchange=()=>update()
     
     document.getElementById("preview-container").onclick=()=>{
       // console.log(document.getElementById("preview-container").style.display)
@@ -61,6 +67,12 @@ function update(time=300){
   y=Number(document.getElementById("value2").value)
   y1=Number(document.getElementById("value4").value)
   z=Number(document.getElementById("value3").value)
+
+  roof_margins.top=Number(document.getElementById("value-margin-1").value)
+  roof_margins.right=Number(document.getElementById("value-margin-2").value)
+  roof_margins.bottom=Number(document.getElementById("value-margin-3").value)
+  roof_margins.left=Number(document.getElementById("value-margin-4").value)
+
   preview_objects.forEach((object)=>{
     object.update(time)
   })
@@ -80,7 +92,7 @@ function initializeObjects(){
   preview_objects[0]=new houseFront("preview-element-0")
   preview_objects[1]=new houseSide("preview-element-1")
   preview_objects[2]=new houseFloor("preview-element-2")
-  preview_objects[3]=new houseFront("preview-element-3")
+  preview_objects[3]=new houseRoof("preview-element-3")
 
   // value_objects[0]=new side_plain_obj("value-preview-0")
   update(1)

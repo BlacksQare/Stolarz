@@ -22,7 +22,7 @@ class houseFront{
     this.dom=dom
 
     this.container=SVG().addTo("#"+dom).size(200,200)
-    this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "none"})
+    this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "#1a1a1a"})
 
     this.highlight_path = this.container.line(0, 0, 0, 0).attr({ "stroke": "var(--accent-color)", "stroke-width": 3})
   }
@@ -45,16 +45,16 @@ class houseFront{
     // this.tag.innerHTML=x+"m x <br>"+y+"m"
     this.updateTag(x, y)
     // this.tag=x+"m x "+y+"m"
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight(){
+  drawHighlight(time){
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin-1.5,margin,this.x+margin+1.5,margin)
+        this.highlight_path.animate(time).plot(margin-1.5,margin,this.x+margin+1.5,margin)
         break;
       case 2:
-        this.highlight_path.plot(margin,margin-1.5,margin,this.y+margin+1.5)
+        this.highlight_path.animate(time).plot(margin,margin-1.5,margin,this.y+margin+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -84,19 +84,19 @@ class houseSide extends houseFront{
     this.top_triangle[1].animate(time).plot(margin,margin,this.z+margin,this.y1+margin)
 
     this.updateTag(z, y)
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight(){
+  drawHighlight(time){
     switch (highlight) {
       case 2:
-        this.highlight_path.plot(margin,margin+this.y1-1.5,margin,this.y+this.y1+margin+1.5)
+        this.highlight_path.animate(time).plot(margin,margin+this.y1-1.5,margin,this.y+this.y1+margin+1.5)
         break;
       case 3:
-        this.highlight_path.plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
+        this.highlight_path.animate(time).plot(margin-1.5,margin+this.y1+this.y,this.z+margin+1.5,margin+this.y1+this.y)
         break;
       case 4:
-        this.highlight_path.plot(margin, margin, margin, margin+this.y1+1.5)
+        this.highlight_path.animate(time).plot(margin, margin, margin, margin+this.y1+1.5)
         break;
       default:
         this.highlight_path.plot(0,0,0,0)
@@ -116,16 +116,54 @@ class houseFloor extends houseFront{
     this.container.animate(time).size(this.x + margin * 2, this.z + margin * 2)
     this.rect.move(margin, margin)
     this.updateTag(x, z)
-    this.drawHighlight()
+    this.drawHighlight(time)
   }
 
-  drawHighlight() {
+  drawHighlight(time) {
     switch (highlight) {
       case 1:
-        this.highlight_path.plot(margin-1.5, margin, this.x+margin+1.5, margin)
+        this.highlight_path.animate(time).plot(margin-1.5, margin, this.x+margin+1.5, margin)
         break;
       case 3:
-        this.highlight_path.plot(margin, margin-1.5, margin, this.z+margin+1.5)
+        this.highlight_path.animate(time).plot(margin, margin-1.5, margin, this.z+margin+1.5)
+        break;
+      default:
+        this.highlight_path.plot(0, 0, 0, 0)
+        break;
+    }
+  }
+}
+
+class houseRoof extends houseFront{
+  constructor(dom){
+    super(dom)
+    this.roof_margins={}
+    // this.rect.attr({"fill": "var(--icons-off-color)", "stroke": "none"})
+    this.margins_rect=this.container.rect(100,100).attr({"stroke": "var(--margins-color)", "stroke-width": 3, "fill": "var(--margins-color)"})
+    this.rect=this.container.rect(0, 0).attr({"stroke": "white", "stroke-width": 3, "fill": "#1a1a1a"})
+    this.highlight_path=this.container.line(0, 0, 0, 0).attr({ "stroke": "var(--accent-color)", "stroke-width": 3})
+  }
+
+  update(time = 300) {
+    [this.x, this.z, this.roof_margins.top, this.roof_margins.right, this.roof_margins.bottom, this.roof_margins.left] = normalize(80, x, z, roof_margins.top, roof_margins.right, roof_margins.bottom, roof_margins.left)
+    this.rect.animate(time).size(this.x-this.roof_margins.left-this.roof_margins.right, this.z-this.roof_margins.top-this.roof_margins.bottom)
+    this.container.animate(time).size(this.x + margin * 2, this.z + margin * 2)
+    this.rect.animate(time).move(margin+this.roof_margins.left, margin+this.roof_margins.top)
+
+    this.margins_rect.animate(time).size(this.x, this.z)
+    this.margins_rect.move(margin,margin)
+
+    this.updateTag(x, z)
+    this.drawHighlight(time)
+  }
+
+  drawHighlight(time) {
+    switch (highlight) {
+      case 1:
+        this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left, margin+this.roof_margins.top, this.x+margin+1.5-this.roof_margins.left, margin+this.roof_margins.top)
+        break;
+      case 3:
+        this.highlight_path.animate(time).plot(margin+this.roof_margins.left, margin-1.5+this.roof_margins.top, margin+this.roof_margins.left, this.z+margin+1.5-this.roof_margins.bottom)
         break;
       default:
         this.highlight_path.plot(0, 0, 0, 0)
