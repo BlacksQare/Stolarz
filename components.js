@@ -1,21 +1,5 @@
 let margin=3
 
-function normalize(...args){
-  var target=args[0]
-  args.splice(0,1)
-  var highest=0;
-  var dimensions=[];
-  args.forEach(element => {
-    if(highest<element){
-      highest=element
-    }
-  });
-  args.forEach(element => {
-    dimensions.push(element/highest*target)
-  });
-  return dimensions
-}
-
 class houseFront{
   constructor(dom){
     // console.log(dom)
@@ -42,9 +26,7 @@ class houseFront{
     this.rect.animate(time).size(this.x, this.y)
     this.container.animate(time).size(this.x+margin*2, this.y+margin*2)
     this.rect.move(margin,margin)
-    // this.tag.innerHTML=x+"m x <br>"+y+"m"
     this.updateTag(x, y)
-    // this.tag=x+"m x "+y+"m"
     this.drawHighlight(time)
   }
 
@@ -155,9 +137,10 @@ class houseRoof extends houseFront{
 
     this.updateTag(x, z)
     this.drawHighlight(time)
+    console.log(this.container.width())
   }
 
-  drawHighlight(time) {
+  async drawHighlight(time) {
     switch (highlight) {
       case 1:
         this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left, margin+this.roof_margins.top, this.x+margin+1.5-this.roof_margins.left, margin+this.roof_margins.top)
@@ -165,6 +148,21 @@ class houseRoof extends houseFront{
       case 3:
         this.highlight_path.animate(time).plot(margin+this.roof_margins.left, margin-1.5+this.roof_margins.top, margin+this.roof_margins.left, this.z+margin+1.5-this.roof_margins.bottom)
         break;
+      case 11:
+        await sleep(time)
+        this.highlight_path.animate(time).plot(this.container.width()/2-10, margin, this.container.width()/2+10, margin)
+        break;
+      case 12:
+        await sleep(time)
+        this.highlight_path.animate(time).plot(this.container.width()-margin, this.container.height()/2-10, this.container.width()-margin, this.container.height()/2+10)
+        break;
+      case 13:
+        await sleep(time)
+        this.highlight_path.animate(time).plot(this.container.width()/2-10, this.container.height()-margin, this.container.width()/2+10, this.container.height()-margin)
+        break;
+      case 14:
+        this.highlight_path.animate(time).plot(margin, this.container.height()/2-10, margin, this.container.height()/2+10)
+        break; 
       default:
         this.highlight_path.plot(0, 0, 0, 0)
         break;
