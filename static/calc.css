@@ -98,3 +98,9 @@ input[type=range]{
   width: 100%;
   text-align: center;
 }
+
+#highlight-select{
+  position: absolute;
+  top: 50px;
+  left: 100px;
+}
