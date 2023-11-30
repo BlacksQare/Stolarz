@@ -23,21 +23,6 @@ body,html {
   overflow: hidden;
 }
 
-#side-plain, #front-plain{
-  float: left;
-  margin: 50px;
-}
-
-#side-plain p, #front-plain p{
-  text-align: center;
-}
-
-/* #side-plain svg, #front-plain svg{
-  margin-left: 50%;
-  transform: translate(-50%);
-} */
-
-
 select{
   --webkit-appearance: initial;
   padding: 10px 15px 10px 15px;
@@ -58,9 +43,9 @@ option{
   background-color: var(--inputs-background-color);
 }
 
-/* svg{
-  background-color: red;
-} */
+svg{
+  transition: opacity var(--animation-time);
+}
 
 main{
   overflow: scroll;
@@ -71,9 +56,10 @@ main{
   left: 0;
   position: absolute;
   height: 100%;
-  padding-top: 50px;
+  padding-top: 150px;
   padding-bottom: 100px;
   box-sizing: border-box;
+  transition: padding-top var(--animation-time), opacity var(--animation-time);
 }
 
 
@@ -85,14 +71,14 @@ header{
   top: -50px;
   width: 100%;
   margin: 0;
-  padding: 10px;
+  /* padding: 10px; */
   padding-top: 60px;
   box-sizing: border-box;
   background-color: rgba(0,0,0,0.5);
   /* background-color: red; */
   /* background: black; */
   /* background:  var(--header-gradient); */
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 20px 20px;
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
   -o-backdrop-filter: var(--blur);
@@ -120,6 +106,17 @@ footer{
   transition: transform var(--animation-time);
 }
 
+input[type="text"]{
+  background-color: var(--inputs-background-color);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px 10px 15px;
+  color: white;
+  outline: none;
+  font-size: medium;
+  width: calc(80%);
+}
+
 #footer-buttons-container{
   width: 100%;
   height: fit-content;
@@ -130,7 +127,6 @@ footer{
   grid-template-columns: auto auto;
   font-size: small;
 }
-
 
 .footer-button{
   width: calc(100% / 3);
