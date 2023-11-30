@@ -71,7 +71,7 @@ async function showCalc(){
 
   Array.from(document.getElementsByClassName("user-values-inputs-input")).forEach((input) => {
     setInputFilter(input, function(value) {
-      return /^\d*(\,|\.)?\d*$/.test(value);
+      return /^\d{1,9}(\,|\.)?\d{0,5}$/.test(value);
     }, "Tylko liczby są dozwolone");
 
     let index=Array.from(document.getElementsByClassName("user-values-inputs-input")).indexOf(input)
