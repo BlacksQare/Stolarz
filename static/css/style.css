@@ -38,10 +38,10 @@ select{
   line-height: 20px;
 }
 
-option{
+/* option{
   color: white;
   background-color: var(--inputs-background-color);
-}
+} */
 
 svg{
   transition: opacity var(--animation-time);
