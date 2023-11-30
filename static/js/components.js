@@ -287,12 +287,12 @@ class houseRoof extends houseFront{
       case 1:
         this.highlight_path.animate(time).plot(margin+this.roof_margins.left, margin-1.5+this.roof_margins.top, margin+this.roof_margins.left, this.x+margin+1.5+this.roof_margins.top)
         break;
-      case 3:
-        this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left, margin+this.roof_margins.top, this.z+margin+1.5+this.roof_margins.left, margin+this.roof_margins.top)
-        break;
-      case 4:
-        this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left+this.z, margin+this.roof_margins.top, margin+3-this.roof_margins.left+this.z+this.z1, margin+this.roof_margins.top)
-        break;
+      // case 3:
+      //   this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left, margin+this.roof_margins.top, this.z+margin+1.5+this.roof_margins.left, margin+this.roof_margins.top)
+      //   break;
+      // case 4:
+      //   this.highlight_path.animate(time).plot(margin-1.5+this.roof_margins.left+this.z, margin+this.roof_margins.top, margin+3-this.roof_margins.left+this.z+this.z1, margin+this.roof_margins.top)
+      //   break;
       case 11:
         this.highlight_path.animate(time).plot(this.calc_z/2-10+margin, margin, this.calc_z/2+10+margin, margin)
         break;
