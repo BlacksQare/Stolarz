@@ -1,6 +1,6 @@
 function addHistComponent(timestamp, values){
   let d=new Date(timestamp).getDate().toString()
-  let m=new Date(timestamp).getMonth().toString()
+  let m=(new Date(timestamp).getMonth()+1).toString()
   let y=new Date(timestamp).getFullYear().toString()
   let h=new Date(timestamp).getHours().toString()
   let min=new Date(timestamp).getMinutes().toString()
